@@ -1,21 +1,33 @@
-/*
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
-import { FormComponent } from './form.component';
+import { TodoFormComponent } from './todo-form.component';
 
-describe('FormComponent', () => {
-  let component: FormComponent;
-  let fixture: ComponentFixture<FormComponent>;
+describe('TodoFormComponent', () => {
+  let component: TodoFormComponent;
+  let fixture: ComponentFixture<TodoFormComponent>;
+  let originalConsoleError!: any;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FormComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeAll(() => {
+    originalConsoleError = console.error;
+    console.error = function (message?: any, ...optionalParams: any[]): void {
+      const params = optionalParams ? `\nParams: ${optionalParams}` : '';
+      fail(`Test contained console error:\n${message}${params}`);
+    };
+  });
+
+  afterAll(() => {
+    console.error = originalConsoleError;
+  });
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [TodoFormComponent],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormComponent);
+    fixture = TestBed.createComponent(TodoFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -24,4 +36,3 @@ describe('FormComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-*/

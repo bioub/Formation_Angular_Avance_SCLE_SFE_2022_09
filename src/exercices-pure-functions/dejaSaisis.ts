@@ -1,7 +1,7 @@
 export function dejaSaisis(nbs: number[]) {
-  if (nbs?.length) {
+  if (!nbs.length) {
     return;
   }
 
-  console.log('Vous avez déjà saisi : ' + nbs.join(' | '));
+  return 'Vous avez déjà saisi : ' + nbs.join(' | ');
 }

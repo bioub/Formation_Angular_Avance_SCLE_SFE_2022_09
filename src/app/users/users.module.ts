@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
 import { UserAddComponent } from './user-add/user-add.component';
@@ -11,7 +10,6 @@ import { UsersRoutingModule } from './users-routing.module';
   imports: [
     UsersRoutingModule,
     SharedModule,
-    TranslateModule.forChild(),
   ],
   declarations: [UsersListComponent, UserShowComponent, UserAddComponent]
 })
