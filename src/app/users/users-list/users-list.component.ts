@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, startWith, switchMap } from 'rxjs/operators';
 
 import { User } from '../../shared/models/user';
 import { UserFakeService } from '../user-fake.service';
@@ -13,12 +13,12 @@ import { IUserService } from '../user-service.interface';
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss'],
-  providers: [
-    {
-      provide: IUserService,
-      useExisting: UserFakeService
-    }
-  ]
+  // providers: [
+  //   {
+  //     provide: IUserService,
+  //     useExisting: UserFakeService
+  //   }
+  // ]
 })
 export class UsersListComponent implements OnInit {
 
@@ -27,7 +27,7 @@ export class UsersListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private title: Title,
-    private userService: IUserService,
+    private userService: UserService,
   ) {}
 
   ngOnInit() {
@@ -35,16 +35,20 @@ export class UsersListComponent implements OnInit {
       this.title.setTitle(data.title);
     });
 
-    this.refreshList();
-    this.userService.events
+    // this.refreshList();
+    this.users$ = this.userService.events
       .pipe(
-        filter(e => e === 'user.write')
-      )
-      .subscribe(e => this.refreshList());
+        //                                       ---------------'refresh.user-list'(au moment du post)-----'send-email'-
+        startWith('refresh.user-list'),
+        // 'refresh.user-list'(au moment du post)---------------'refresh.user-list'(au moment du post)-----'send-email'-
+        filter(e => e === 'refresh.user-list'),
+        // 'refresh.user-list'(au moment du post)---------------'refresh.user-list'(au moment du post)-----            -
+        switchMap(() => this.userService.getList$()),
+      );
   }
 
-  public refreshList() {
-    this.users$ = this.userService.getList$();
-  }
+  // public refreshList() {
+  //   this.users$ = this.userService.getList$();
+  // }
 
 }

@@ -14,9 +14,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ClockModule } from 'my-components';
 import { LayoutResizeComponent } from './core/layout-resize/layout-resize.component';
+import { CountdownComponent } from './core/countdown/countdown.component';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, HomeComponent, MenuComponent, LayoutResizeComponent],
+  declarations: [AppComponent, NotFoundComponent, HomeComponent, MenuComponent, LayoutResizeComponent, CountdownComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     SharedModule,

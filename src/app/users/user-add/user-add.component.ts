@@ -27,7 +27,7 @@ export class UserAddComponent implements OnInit {
     this.userService.create$(this.user)
       .subscribe((user: User) => {
         this.router.navigate(['users', user.id]);
-        this.userService.events.emit('user.write');
+        this.userService.events.emit('refresh.user-list');
       });
   }
 }

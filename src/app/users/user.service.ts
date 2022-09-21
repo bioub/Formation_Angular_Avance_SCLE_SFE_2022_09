@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { User } from '../shared/models/user';
@@ -28,6 +29,16 @@ export class UserService implements IUserService {
   }
 
   getById$(id: number): Observable<User> {
+    if (id == 2) {
+      return this.http.get<User>(`${environment.apiBaseUrl}/users/${id}`).pipe(
+        delay(5000),
+      );
+    }
+
     return this.http.get<User>(`${environment.apiBaseUrl}/users/${id}`);
+
+    // ---------{val}-----{val}--------|
+    // delay(200)
+    // -----------{val}-----{val}--------|
   }
 }
