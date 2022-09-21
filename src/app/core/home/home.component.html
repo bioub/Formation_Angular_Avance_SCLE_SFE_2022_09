@@ -1,3 +1,34 @@
 <p>
   Welcome
 </p>
+
+<hr>
+
+<p>
+  Format : <input [(ngModel)]="format" #ngModelDirect="ngModel" />
+</p>
+
+{{ngModelDirect.valid}}
+
+<p>
+  Delay : <input [ngModel]="delay" (ngModelChange)="updateDelay($event)" />
+</p>
+
+<p>
+  <button (click)="myClockComp.start()">Start</button>
+  <button (click)="myClockComp.stop()">Stop</button>
+</p>
+
+<my-clock [format]="format" [delay]="delay" #myClockComp></my-clock>
+{{myClockComp.format}}
+
+<div class="box-class" #boxEl>box</div>
+{{boxEl.className}}
+
+
+<app-tabs>
+  <app-tab title="Title A"><b>Content</b> A</app-tab>
+  <app-tab title="Title B"><b>Content</b> B</app-tab>
+  <app-tab title="Title C"><b>Content</b> C</app-tab>
+  <app-tab title="Title D"><b>Content</b> D</app-tab>
+</app-tabs>

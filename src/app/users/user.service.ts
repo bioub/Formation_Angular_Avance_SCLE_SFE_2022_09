@@ -4,11 +4,17 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { User } from '../shared/models/user';
+import { IUserService } from './user-service.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService implements IUserService {
+  loggedUser = {
+    username: 'Toto',
+    isAdmin: false,
+  }
+
   events = new EventEmitter<string>();
 
   constructor(private http: HttpClient) {}

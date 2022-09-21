@@ -10,4 +10,8 @@ export class TodoItemComponent {
   @Input()
   public todo: string;
 
+  ngDoCheck() {
+    console.log('TodoItem checked');
+
+  }
 }

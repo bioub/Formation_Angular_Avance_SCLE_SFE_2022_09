@@ -9,7 +9,9 @@ if (environment.production) {
 }
 
 function bootstrap() {
-  platformBrowserDynamic().bootstrapModule(AppModule)
+  platformBrowserDynamic().bootstrapModule(AppModule, {
+    // ngZone: 'noop'
+  })
   .catch(err => console.error(err));
 };
 
@@ -19,4 +21,4 @@ function bootstrap() {
  } else {
    document.addEventListener('DOMContentLoaded', bootstrap);
  }
- 
+

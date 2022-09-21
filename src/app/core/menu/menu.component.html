@@ -7,9 +7,12 @@
   <div class="collapse navbar-collapse" [ngClass]="{show: open}">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="current" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" [routerLink]="['todos']">Todos</a>
+        <a class="nav-link" [routerLink]="['layout']">Demo Layout</a>
       </li>
       <li class="nav-item" routerLinkActive="current" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" [routerLink]="['todos']">Todos</a>
+      </li>
+      <li class="nav-item" routerLinkActive="current" >
         <a class="nav-link" [routerLink]="['users']">Users</a>
       </li>
     </ul>

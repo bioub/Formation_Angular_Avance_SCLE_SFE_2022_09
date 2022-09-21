@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  format = 'HH:mm:ss';
+  delay = 1000;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  updateDelay(event) {
+    this.delay = Number(event);
   }
 
 }

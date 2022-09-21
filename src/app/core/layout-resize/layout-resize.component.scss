@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  height: 100px;
+}
+
+.yellow {
+  background-color: yellow;
+  flex: 1;
+}
+
+.blue {
+  background-color: lightblue;
+  flex: 1;
+}
+
+.green{
+  background-color: lightgreen;
+  flex: 1;
+}

@@ -5,12 +5,20 @@ import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { User } from '../../shared/models/user';
+import { UserFakeService } from '../user-fake.service';
 import { UserService } from '../user.service';
+import { IUserService } from '../user-service.interface';
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss'],
+  providers: [
+    {
+      provide: IUserService,
+      useExisting: UserFakeService
+    }
+  ]
 })
 export class UsersListComponent implements OnInit {
 
@@ -19,7 +27,7 @@ export class UsersListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private title: Title,
-    private userService: UserService,
+    private userService: IUserService,
   ) {}
 
   ngOnInit() {
