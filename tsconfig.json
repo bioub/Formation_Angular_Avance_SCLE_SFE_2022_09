@@ -9,6 +9,11 @@
     "experimentalDecorators": true,
     "module": "es2020",
     "moduleResolution": "node",
+    "paths": {
+      "my-components": [
+        "dist/my-components"
+      ]
+    },
     "importHelpers": true,
     "target": "es2020",
     "lib": [

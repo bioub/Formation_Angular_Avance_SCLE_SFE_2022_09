@@ -12,11 +12,12 @@ import { TodosModule } from './todos/todos.module';
 import { UsersModule } from './users/users.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { MyComponentsModule } from 'my-components';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, HomeComponent, MenuComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     SharedModule,
     TodosModule,
     UsersModule,
@@ -28,6 +29,7 @@ import { environment } from '../environments/environment';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    MyComponentsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
