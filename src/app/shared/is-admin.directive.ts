@@ -18,7 +18,10 @@ export class IsAdminDirective implements OnInit {
 
   ngOnInit(): void {
     if (this.userService.loggedUser.isAdmin) {
+      // this.hasView = true
       this.viewContainer.createEmbeddedView(this.templateRef);
+    } else {
+      // this.viewContainer.clear();
     }
   }
 }

@@ -26,14 +26,14 @@ export class UsersListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private title: Title,
+    // private title: Title,
     private userService: UserService,
   ) {}
 
   ngOnInit() {
-    this.route.data.subscribe((data) => {
-      this.title.setTitle(data.title);
-    });
+    // this.route.data.subscribe((data) => {
+    //   this.title.setTitle(data.title);
+    // });
 
     // this.refreshList();
     this.users$ = this.userService.events

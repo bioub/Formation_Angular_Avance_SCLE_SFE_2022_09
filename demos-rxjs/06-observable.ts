@@ -37,14 +37,14 @@ intervalP(1000).then(() => {
 
 // Une solution -> Observable
 function interval$(delay: number) {
-  return new Observable((subcriber) => {
+  return new Observable((subscriber) => {
     setInterval(() => {
-      subcriber.next();
+      subscriber.next();
     }, delay);
   });
 }
 
-interval$(1000).subscribe({
+interval$(1000).subscribe({ // observer
   next() {
     console.log('next', '1s observable');
   },

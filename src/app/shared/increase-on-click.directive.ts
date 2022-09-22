@@ -1,7 +1,8 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appIncreaseOnClick]'
+  selector: '[appIncreaseOnClick]',
+  exportAs: 'increase' // #maVar="increase"
 })
 export class IncreaseOnClickDirective {
 

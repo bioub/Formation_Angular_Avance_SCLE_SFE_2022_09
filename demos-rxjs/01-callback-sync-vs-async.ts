@@ -44,3 +44,7 @@ console.log('E');
 // file d'attente (502ms) :
 // file d'attente (1000ms) : taskC
 // file d'attente (1001ms) :
+
+// Jake Archibald (Google)
+// Conf JSConf.Asia 2018 -> In The Loop
+// https://www.youtube.com/watch?v=cCOL7MC4Pl0

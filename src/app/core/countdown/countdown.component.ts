@@ -1,19 +1,16 @@
-import { ThisReceiver } from '@angular/compiler';
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { fromEvent, interval } from 'rxjs';
-import { map, startWith, switchMap, switchMapTo, take, takeWhile, tap } from 'rxjs/operators';
+import { map, startWith, switchMapTo, take } from 'rxjs/operators';
 
-function countdown(startValue = 3)  {
+function countdown(startValue = 3) {
   return interval(1000).pipe(
+    //  ----0----1----2---- 3  ---- 4  ---- 5  ----  6 ---...
     map((v) => startValue - 1 - v),
+    //  ----2----1----0----(-1)----(-2)----(-3)----(-4)---...
     startWith(startValue),
-    take(startValue + 1),
+    // 3----2----1----0----(-1)----(-2)----(-3)----(-4)---...
+    take(startValue + 1)
+    // 3----2----1----0|
   );
 }
 
@@ -32,6 +29,20 @@ export class CountdownComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     fromEvent(this.btnRef.nativeElement, 'click')
       .pipe(switchMapTo(countdown(this.count)))
+      // -------(click)-------------(click)--(click)-------
+      //        3----2----1----0|
+      //                            3----2---X
+      //                                     3----2----1----0|
+      // switchMapTo
+      // -------3----2----1----0----3----2---3----2----1----0
+
+      // si ça avait été mergeMap :
+      // -------(click)-------------(click)--(click)-------
+      //        3----2----1----0|
+      //                            3----2----1----0|
+      //                                     3----2----1----0|
+      // mergeMapTo
+      // -------3----2----1----0----3----2---31---20---1----0
       .subscribe((v) => {
         this.count = v;
       });
