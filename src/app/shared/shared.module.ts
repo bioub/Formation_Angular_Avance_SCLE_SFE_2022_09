@@ -5,6 +5,7 @@ import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tabs/tab/tab.component';
 import { IncreaseOnClickDirective } from './increase-on-click.directive';
 import { IsAdminDirective } from './is-admin.directive';
+import { TimersComponent } from './timers/timers.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { IsAdminDirective } from './is-admin.directive';
     TabsComponent,
     TabComponent,
     IncreaseOnClickDirective,
-    IsAdminDirective
+    IsAdminDirective,
+    TimersComponent
   ],
   exports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { IsAdminDirective } from './is-admin.directive';
     TabsComponent,
     TabComponent,
     IncreaseOnClickDirective,
-    IsAdminDirective
+    IsAdminDirective,
+    TimersComponent
   ]
 })
 export class SharedModule { }

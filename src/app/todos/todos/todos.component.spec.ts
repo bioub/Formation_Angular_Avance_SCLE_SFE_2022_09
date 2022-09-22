@@ -1,27 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TodoFormComponent } from '../todo-form/todo-form.component';
+import { TodosListComponent } from '../todos-list/todos-list.component';
+import { MockComponent } from 'ng-mocks'
 
 import { TodosComponent } from './todos.component';
 
 describe('TodosComponent', () => {
   let component: TodosComponent;
   let fixture: ComponentFixture<TodosComponent>;
-  let originalConsoleError!: any;
-
-  beforeAll(() => {
-    originalConsoleError = console.error;
-    console.error = function (message?: any, ...optionalParams: any[]): void {
-      const params = optionalParams ? `\nParams: ${optionalParams}` : '';
-      fail(`Test contained console error:\n${message}${params}`);
-    };
-  });
-
-  afterAll(() => {
-    console.error = originalConsoleError;
-  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TodosComponent],
+      declarations: [
+        TodosComponent, MockComponent(TodoFormComponent), MockComponent(TodosListComponent)
+      ],
+      errorOnUnknownElements: true,
+      errorOnUnknownProperties: true,
     }).compileComponents();
   });
 

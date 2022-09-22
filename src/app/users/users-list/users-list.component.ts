@@ -25,7 +25,7 @@ export class UsersListComponent implements OnInit {
   public users$: Observable<User[]>;
 
   constructor(
-    private route: ActivatedRoute,
+    // private route: ActivatedRoute,
     // private title: Title,
     private userService: UserService,
   ) {}

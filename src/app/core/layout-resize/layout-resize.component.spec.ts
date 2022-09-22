@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IncreaseOnClickDirective } from 'src/app/shared/increase-on-click.directive';
 
 import { LayoutResizeComponent } from './layout-resize.component';
 
@@ -8,7 +9,7 @@ describe('LayoutResizeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LayoutResizeComponent ]
+      declarations: [ LayoutResizeComponent, IncreaseOnClickDirective ]
     })
     .compileComponents();
 
