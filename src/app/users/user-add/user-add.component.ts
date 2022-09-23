@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { usersLoadList } from 'src/app/store/actions';
 
 import { User } from '../../shared/models/user';
 import { UserService } from '../user.service';
@@ -18,6 +20,7 @@ export class UserAddComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
+    private store: Store,
   ) {}
 
   ngOnInit() {
@@ -27,7 +30,7 @@ export class UserAddComponent implements OnInit {
     this.userService.create$(this.user)
       .subscribe((user: User) => {
         this.router.navigate(['users', user.id]);
-        this.userService.events.emit('refresh.user-list');
+        this.store.dispatch(usersLoadList());
       });
   }
 }

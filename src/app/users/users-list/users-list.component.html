@@ -1,14 +1,16 @@
+<p *ngIf="(usersState$ | async)?.loading">Loading...</p>
+
 <div class="row">
   <div class="col-md-3">
     <div class="list-group mb-3">
       <a class="list-group-item list-group-item-action"
-         *ngFor="let c of users$ | async"
+         *ngFor="let c of (usersState$ | async)?.data"
          routerLinkActive="active"
          [routerLink]="[c.id]">
         {{c.name}}
       </a>
       <li class="list-group-item text-center">
-        {{(users$ | async)?.length}} users
+        {{(usersState$ | async)?.data.length}} users
       </li>
       <a class="btn btn-primary btn-block mt-3" [routerLink]="['add']">Add</a>
     </div>

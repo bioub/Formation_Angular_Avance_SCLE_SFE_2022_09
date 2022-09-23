@@ -17,8 +17,10 @@ import { LayoutResizeComponent } from './core/layout-resize/layout-resize.compon
 import { CountdownComponent } from './core/countdown/countdown.component';
 import { StoreModule } from '@ngrx/store';
 import { CounterComponent } from './core/counter/counter.component';
-import { AppState, countReducer } from './store/reducers';
+import { AppState, countReducer, usersReducer } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './store/user.effect';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, HomeComponent, MenuComponent, LayoutResizeComponent, CountdownComponent, CounterComponent],
@@ -38,9 +40,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ClockModule,
 // test
     StoreModule.forRoot<AppState>({ // créé { count: initialStateCounterReducer }
-      count: countReducer
+      count: countReducer,
+      users: usersReducer,
     }, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([UserEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],
