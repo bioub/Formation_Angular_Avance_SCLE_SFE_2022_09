@@ -15,9 +15,13 @@ import { environment } from '../environments/environment';
 import { ClockModule } from 'my-components';
 import { LayoutResizeComponent } from './core/layout-resize/layout-resize.component';
 import { CountdownComponent } from './core/countdown/countdown.component';
+import { StoreModule } from '@ngrx/store';
+import { CounterComponent } from './core/counter/counter.component';
+import { AppState, countReducer } from './store/reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, HomeComponent, MenuComponent, LayoutResizeComponent, CountdownComponent],
+  declarations: [AppComponent, NotFoundComponent, HomeComponent, MenuComponent, LayoutResizeComponent, CountdownComponent, CounterComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     SharedModule,
@@ -32,6 +36,11 @@ import { CountdownComponent } from './core/countdown/countdown.component';
     //   registrationStrategy: 'registerWhenStable:30000'
     // }),
     ClockModule,
+// test
+    StoreModule.forRoot<AppState>({ // créé { count: initialStateCounterReducer }
+      count: countReducer
+    }, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent],
