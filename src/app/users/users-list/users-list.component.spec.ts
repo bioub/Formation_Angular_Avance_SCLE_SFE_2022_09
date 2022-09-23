@@ -98,10 +98,10 @@ describe('UsersListComponent', () => {
   it('contains Steve Jobs', () => {
     const controller = TestBed.inject(HttpTestingController);
 
-    // controller.expectOne('https://jsonplaceholder.typicode.com/users').flush([{id: 1, name: 'Steve Jobs'}, {id: 2, name: 'Bill Gates'}])
+    controller.expectOne('https://jsonplaceholder.typicode.com/users').flush([{id: 1, name: 'Steve Jobs'}, {id: 2, name: 'Bill Gates'}])
 
     // comme j'ai pas corrigé l'exercice sur Subject : 2 requêtes
-    controller.match('https://jsonplaceholder.typicode.com/users')[0].flush([{id: 1, name: 'Steve Jobs'}, {id: 2, name: 'Bill Gates'}])
+    // controller.match('https://jsonplaceholder.typicode.com/users')[0].flush([{id: 1, name: 'Steve Jobs'}, {id: 2, name: 'Bill Gates'}])
 
     fixture.detectChanges();
     expect(nativeElement.textContent).toContain('Steve Jobs');

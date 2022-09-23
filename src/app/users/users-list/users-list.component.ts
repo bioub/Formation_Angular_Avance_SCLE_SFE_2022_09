@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, startWith, switchMap } from 'rxjs/operators';
+import { filter, share, shareReplay, startWith, switchMap } from 'rxjs/operators';
 
 import { User } from '../../shared/models/user';
 import { UserFakeService } from '../user-fake.service';
@@ -44,6 +44,7 @@ export class UsersListComponent implements OnInit {
         filter(e => e === 'refresh.user-list'),
         // 'refresh.user-list'(au moment du post)---------------'refresh.user-list'(au moment du post)-----            -
         switchMap(() => this.userService.getList$()),
+        share(), // créé et retourne le subjet qui subscribe à l'observable
       );
   }
 
